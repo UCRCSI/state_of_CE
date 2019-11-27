@@ -1,0 +1,71 @@
+type,region,group,No,Yes
+Overall,Inland Empire,Overall,0.55,0.45
+Overall,Rest of California,Overall,0.51,0.49
+Overall,Rest of SoCal,Overall,0.54,0.46
+Overall,SoCal,Overall,0.54,0.46
+Overall,State of CA,Overall,0.52,0.48
+Race,Inland Empire,Hispanic,0.47,0.53
+Race,Inland Empire,White,0.55,0.45
+Race,Inland Empire,Asian,0.65,0.35
+Race,Inland Empire,Black,0.89,0.11
+Race,Rest of California,Asian,0.45,0.55
+Race,Rest of California,Black,0.45,0.55
+Race,Rest of California,Hispanic,0.52,0.48
+Race,Rest of California,White,0.52,0.48
+Race,Rest of SoCal,Hispanic,0.53,0.47
+Race,Rest of SoCal,Asian,0.54,0.46
+Race,Rest of SoCal,White,0.54,0.46
+Race,Rest of SoCal,Black,0.61,0.39
+Race,SoCal,Hispanic,0.51,0.49
+Race,SoCal,White,0.54,0.46
+Race,SoCal,Asian,0.56,0.44
+Race,SoCal,Black,0.7,0.3
+Race,State of CA,Asian,0.51,0.49
+Race,State of CA,Hispanic,0.51,0.49
+Race,State of CA,White,0.53,0.47
+Race,State of CA,Black,0.6,0.4
+Gender,Inland Empire,Female,0.51,0.49
+Gender,Inland Empire,Male,0.61,0.39
+Gender,Rest of California,Female,0.5,0.5
+Gender,Rest of California,Male,0.52,0.48
+Gender,Rest of SoCal,Female,0.48,0.52
+Gender,Rest of SoCal,Male,0.61,0.39
+Gender,SoCal,Female,0.49,0.51
+Gender,SoCal,Male,0.61,0.39
+Gender,State of CA,Female,0.49,0.51
+Gender,State of CA,Male,0.57,0.43
+Age Group,Inland Empire,35-49,0.4,0.6
+Age Group,Inland Empire,18-34,0.48,0.52
+Age Group,Inland Empire,50-64,0.65,0.35
+Age Group,Inland Empire,65+,0.84,0.16
+Age Group,Rest of California,35-49,0.35,0.65
+Age Group,Rest of California,18-34,0.49,0.51
+Age Group,Rest of California,50-64,0.59,0.41
+Age Group,Rest of California,65+,0.63,0.37
+Age Group,Rest of SoCal,35-49,0.41,0.59
+Age Group,Rest of SoCal,18-34,0.51,0.49
+Age Group,Rest of SoCal,50-64,0.62,0.38
+Age Group,Rest of SoCal,65+,0.65,0.35
+Age Group,SoCal,35-49,0.4,0.6
+Age Group,SoCal,18-34,0.5,0.5
+Age Group,SoCal,50-64,0.63,0.37
+Age Group,SoCal,65+,0.69,0.31
+Age Group,State of CA,35-49,0.38,0.62
+Age Group,State of CA,18-34,0.5,0.5
+Age Group,State of CA,50-64,0.61,0.39
+Age Group,State of CA,65+,0.66,0.34
+Education,Inland Empire,4-Year College or Higher,0.38,0.62
+Education,Inland Empire,HS or Less,0.55,0.45
+Education,Inland Empire,Some College or AA,0.69,0.31
+Education,Rest of California,4-Year College or Higher,0.45,0.55
+Education,Rest of California,HS or Less,0.56,0.44
+Education,Rest of California,Some College or AA,0.58,0.42
+Education,Rest of SoCal,4-Year College or Higher,0.5,0.5
+Education,Rest of SoCal,HS or Less,0.56,0.44
+Education,Rest of SoCal,Some College or AA,0.59,0.41
+Education,SoCal,4-Year College or Higher,0.48,0.52
+Education,SoCal,HS or Less,0.56,0.44
+Education,SoCal,Some College or AA,0.62,0.38
+Education,State of CA,4-Year College or Higher,0.47,0.53
+Education,State of CA,HS or Less,0.56,0.44
+Education,State of CA,Some College or AA,0.6,0.4

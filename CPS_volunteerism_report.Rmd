@@ -1,0 +1,1243 @@
+---
+title: 'CPS Volunteerism Data Report'
+author: ''
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    css: customstyles.css
+    self_contained: yes
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,message = F,warning = F)
+knitr::opts_chunk$set(out.width = "100%",fig.retina = 2)
+library(tidyverse)
+library(here)
+library(plotly)
+library(srvyr)
+library(flextable)
+library(officer)
+library(here)
+library(haven)
+library(dplyr)
+# 
+# all_files <- list.files(here("dta/raw",""),".rds")
+# all_files <- str_remove(all_files,".rds")
+# all_files <- as.Date(all_files)
+# all_files <- sort(all_files,decreasing = T)
+# most_recentname <- all_files[1]
+# most_recent <- all_files[1]
+# most_recent <- paste(most_recent,".rds",sep ="")
+
+```
+
+# README
+
+- This is the CPS Volunteer and Civic Life Supplement Survey Report (2017)
+
+
+
+
+# Volunteer Status {.tabset}
+Volunteer status in the past 12 months
+
+
+
+## Overall
+
+```{r}
+data <- read_csv("data/dta1_vstatus17.csv")
+data %>% 
+  filter(type == "Overall") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Volunteer` = scales::percent(`Volunteer`,accuracy = 1)) %>% 
+  mutate(`Not a volunteer` = scales::percent(`Not a volunteer`,accuracy = 1)) %>% 
+  knitr::kable()
+
+```
+
+
+## Race
+```{r}
+data <- read_csv("data/dta1_vstatus17.csv")
+data %>% 
+  filter(type == "Race") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Volunteer` = scales::percent(`Volunteer`,accuracy = 1)) %>% 
+  mutate(`Not a volunteer` = scales::percent(`Not a volunteer`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+
+## Age Groups
+```{r}
+data <- read_csv("data/dta1_vstatus17.csv")
+data %>% 
+  filter(type == "Age Group") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Volunteer` = scales::percent(`Volunteer`,accuracy = 1)) %>% 
+  mutate(`Not a volunteer` = scales::percent(`Not a volunteer`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+## Gender
+```{r}
+data <- read_csv("data/dta1_vstatus17.csv")
+data %>% 
+  filter(type == "Gender") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Volunteer` = scales::percent(`Volunteer`,accuracy = 1)) %>% 
+  mutate(`Not a volunteer` = scales::percent(`Not a volunteer`,accuracy = 1)) %>% 
+  knitr::kable()
+
+```
+
+## Educational Attainment
+
+```{r}
+data <- read_csv("data/dta1_vstatus17.csv")
+data %>% 
+  filter(type == "Education") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Volunteer` = scales::percent(`Volunteer`,accuracy = 1)) %>% 
+  mutate(`Not a volunteer` = scales::percent(`Not a volunteer`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+
+
+#Civic & Political {.tabset}
+Volunteer activity: civic, political, professional, international
+
+## Overall
+
+```{r}
+data <- read_csv("data/dta_v_org_type1_17.csv")
+data %>% 
+  filter(type == "Overall") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+
+```
+
+
+## Race
+```{r}
+data <- read_csv("data/dta_v_org_type1_17.csv")
+data %>% 
+  filter(type == "Race") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+
+## Age Groups
+```{r}
+data <- read_csv("data/dta_v_org_type1_17.csv")
+data %>% 
+  filter(type == "Age Group") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+## Gender
+
+```{r}
+data <- read_csv("data/dta_v_org_type1_17.csv")
+data %>% 
+  filter(type == "Gender") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+
+```
+
+## Educational Attainment
+
+```{r}
+data <- read_csv("data/dta_v_org_type1_17.csv")
+data %>% 
+  filter(type == "Education") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+
+
+#Education & Youth {.tabset}
+Volunteer activity: Education & Youth Organizations
+
+## Overall
+
+```{r}
+data <- read_csv("data/dta_v_org_type2_17.csv")
+data %>% 
+  filter(type == "Overall") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+
+```
+
+
+## Race
+```{r}
+data <- read_csv("data/dta_v_org_type2_17.csv")
+data %>% 
+  filter(type == "Race") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+
+## Age Groups
+```{r}
+data <- read_csv("data/dta_v_org_type2_17.csv")
+data %>% 
+  filter(type == "Age Group") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+## Gender
+```{r}
+data <- read_csv("data/dta_v_org_type2_17.csv")
+data %>% 
+  filter(type == "Gender") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+
+```
+
+## Educational Attainment
+
+```{r}
+data <- read_csv("data/dta_v_org_type2_17.csv")
+data %>% 
+  filter(type == "Education") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+
+
+#Religious {.tabset}
+
+## Overall
+```{r}
+data <- read_csv("data/dta_v_org_type6_17.csv")
+data %>% 
+  filter(type == "Overall") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+
+```
+
+
+## Race
+```{r}
+data <- read_csv("data/dta_v_org_type6_17.csv")
+data %>% 
+  filter(type == "Race") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+
+## Age Groups
+```{r}
+data <- read_csv("data/dta_v_org_type6_17.csv")
+data %>% 
+  filter(type == "Age Group") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+## Gender
+
+```{r}
+data <- read_csv("data/dta_v_org_type6_17.csv")
+data %>% 
+  filter(type == "Gender") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+
+```
+
+## Educational Attainment
+
+```{r}
+data <- read_csv("data/dta_v_org_type6_17.csv")
+data %>% 
+  filter(type == "Education") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+
+
+#Social & Community {.tabset}
+
+## Overall
+
+```{r}
+data <- read_csv("data/dta_v_org_type7_17.csv")
+data %>% 
+  filter(type == "Overall") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+
+```
+
+
+## Race
+```{r}
+data <- read_csv("data/dta_v_org_type7_17.csv")
+data %>% 
+  filter(type == "Race") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+
+## Age Groups
+```{r}
+data <- read_csv("data/dta_v_org_type7_17.csv")
+data %>% 
+  filter(type == "Age Group") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+## Gender
+
+```{r}
+data <- read_csv("data/dta_v_org_type7_17.csv")
+data %>% 
+  filter(type == "Gender") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+
+```
+
+## Educational Attainment
+
+```{r}
+data <- read_csv("data/dta_v_org_type7_17.csv")
+data %>% 
+  filter(type == "Education") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+
+
+#Sports & Hobby {.tabset}
+
+## Overall
+
+```{r}
+data <- read_csv("data/dta_v_org_type8_17.csv")
+data %>% 
+  filter(type == "Overall") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+
+```
+
+
+## Race
+```{r}
+data <- read_csv("data/dta_v_org_type8_17.csv")
+data %>% 
+  filter(type == "Race") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+
+## Age Groups
+```{r}
+data <- read_csv("data/dta_v_org_type8_17.csv")
+data %>% 
+  filter(type == "Age Group") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+## Gender
+
+```{r}
+data <- read_csv("data/dta_v_org_type8_17.csv")
+data %>% 
+  filter(type == "Gender") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+
+```
+
+## Educational Attainment
+
+```{r}
+data <- read_csv("data/dta_v_org_type8_17.csv")
+data %>% 
+  filter(type == "Education") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+
+
+# Discussing Politics {.tabset}
+Discussing politics with Family and Friends
+## Overall
+
+```{r}
+data <- read_csv("data/dta_dis_poli_ff_17.csv")
+data %>% 
+  filter(type == "Overall") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Basically every day` = scales::percent(`Basically every day`,accuracy = 1)) %>% 
+  mutate(`A few times a week` = scales::percent(`A few times a week`,accuracy = 1)) %>%
+  mutate(`A few times a month` = scales::percent(`A few times a month`,accuracy = 1)) %>% 
+  mutate(`Once a month` = scales::percent(`Once a month`,accuracy = 1)) %>% 
+  mutate(`Less than once a month` = scales::percent(`Less than once a month`,accuracy = 1)) %>% 
+  mutate(`Not at all` = scales::percent(`Not at all`,accuracy = 1)) %>% 
+  knitr::kable()
+
+```
+
+
+## Race
+```{r}
+data <- read_csv("data/dta_dis_poli_ff_17.csv")
+data %>% 
+  filter(type == "Race") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Basically every day` = scales::percent(`Basically every day`,accuracy = 1)) %>% 
+  mutate(`A few times a week` = scales::percent(`A few times a week`,accuracy = 1)) %>%
+  mutate(`A few times a month` = scales::percent(`A few times a month`,accuracy = 1)) %>% 
+  mutate(`Once a month` = scales::percent(`Once a month`,accuracy = 1)) %>% 
+  mutate(`Less than once a month` = scales::percent(`Less than once a month`,accuracy = 1)) %>% 
+  mutate(`Not at all` = scales::percent(`Not at all`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+
+## Age Groups
+```{r}
+data <- read_csv("data/dta_dis_poli_ff_17.csv")
+data %>% 
+  filter(type == "Age Group") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Basically every day` = scales::percent(`Basically every day`,accuracy = 1)) %>% 
+  mutate(`A few times a week` = scales::percent(`A few times a week`,accuracy = 1)) %>%
+  mutate(`A few times a month` = scales::percent(`A few times a month`,accuracy = 1)) %>% 
+  mutate(`Once a month` = scales::percent(`Once a month`,accuracy = 1)) %>% 
+  mutate(`Less than once a month` = scales::percent(`Less than once a month`,accuracy = 1)) %>% 
+  mutate(`Not at all` = scales::percent(`Not at all`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+## Gender
+
+```{r}
+data <- read_csv("data/dta_dis_poli_ff_17.csv")
+data %>% 
+  filter(type == "Gender") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Basically every day` = scales::percent(`Basically every day`,accuracy = 1)) %>% 
+  mutate(`A few times a week` = scales::percent(`A few times a week`,accuracy = 1)) %>%
+  mutate(`A few times a month` = scales::percent(`A few times a month`,accuracy = 1)) %>% 
+  mutate(`Once a month` = scales::percent(`Once a month`,accuracy = 1)) %>% 
+  mutate(`Less than once a month` = scales::percent(`Less than once a month`,accuracy = 1)) %>% 
+  mutate(`Not at all` = scales::percent(`Not at all`,accuracy = 1)) %>% 
+  knitr::kable()
+
+```
+
+## Educational Attainment
+
+```{r}
+data <- read_csv("data/dta_dis_poli_ff_17.csv")
+data %>% 
+  filter(type == "Education") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Basically every day` = scales::percent(`Basically every day`,accuracy = 1)) %>% 
+  mutate(`A few times a week` = scales::percent(`A few times a week`,accuracy = 1)) %>%
+  mutate(`A few times a month` = scales::percent(`A few times a month`,accuracy = 1)) %>% 
+  mutate(`Once a month` = scales::percent(`Once a month`,accuracy = 1)) %>% 
+  mutate(`Less than once a month` = scales::percent(`Less than once a month`,accuracy = 1)) %>% 
+  mutate(`Not at all` = scales::percent(`Not at all`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+
+
+#Diversity Interaction {.tabset}
+Frequency of talking to people of different racial/ethnic/cultural background
+
+## Overall
+```{r}
+data <- read_csv("data/dta_dis_dif_rac_17.csv")
+data %>% 
+  filter(type == "Overall") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Basically every day` = scales::percent(`Basically every day`,accuracy = 1)) %>% 
+  mutate(`A few times a week` = scales::percent(`A few times a week`,accuracy = 1)) %>%
+  mutate(`A few times a month` = scales::percent(`A few times a month`,accuracy = 1)) %>% 
+  mutate(`Once a month` = scales::percent(`Once a month`,accuracy = 1)) %>% 
+  mutate(`Less than once a month` = scales::percent(`Less than once a month`,accuracy = 1)) %>% 
+  mutate(`Not at all` = scales::percent(`Not at all`,accuracy = 1)) %>% 
+  knitr::kable()
+
+```
+
+
+## Race
+```{r}
+data <- read_csv("data/dta_dis_dif_rac_17.csv")
+data %>% 
+  filter(type == "Race") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Basically every day` = scales::percent(`Basically every day`,accuracy = 1)) %>% 
+  mutate(`A few times a week` = scales::percent(`A few times a week`,accuracy = 1)) %>%
+  mutate(`A few times a month` = scales::percent(`A few times a month`,accuracy = 1)) %>% 
+  mutate(`Once a month` = scales::percent(`Once a month`,accuracy = 1)) %>% 
+  mutate(`Less than once a month` = scales::percent(`Less than once a month`,accuracy = 1)) %>% 
+  mutate(`Not at all` = scales::percent(`Not at all`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+
+## Age Groups
+```{r}
+data <- read_csv("data/dta_dis_dif_rac_17.csv")
+data %>% 
+  filter(type == "Age Group") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Basically every day` = scales::percent(`Basically every day`,accuracy = 1)) %>% 
+  mutate(`A few times a week` = scales::percent(`A few times a week`,accuracy = 1)) %>%
+  mutate(`A few times a month` = scales::percent(`A few times a month`,accuracy = 1)) %>% 
+  mutate(`Once a month` = scales::percent(`Once a month`,accuracy = 1)) %>% 
+  mutate(`Less than once a month` = scales::percent(`Less than once a month`,accuracy = 1)) %>% 
+  mutate(`Not at all` = scales::percent(`Not at all`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+## Gender
+
+```{r}
+data <- read_csv("data/dta_dis_dif_rac_17.csv")
+data %>% 
+  filter(type == "Gender") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Basically every day` = scales::percent(`Basically every day`,accuracy = 1)) %>% 
+  mutate(`A few times a week` = scales::percent(`A few times a week`,accuracy = 1)) %>%
+  mutate(`A few times a month` = scales::percent(`A few times a month`,accuracy = 1)) %>% 
+  mutate(`Once a month` = scales::percent(`Once a month`,accuracy = 1)) %>% 
+  mutate(`Less than once a month` = scales::percent(`Less than once a month`,accuracy = 1)) %>% 
+  mutate(`Not at all` = scales::percent(`Not at all`,accuracy = 1)) %>% 
+  knitr::kable()
+
+```
+
+## Educational Attainment
+
+```{r}
+data <- read_csv("data/dta_dis_dif_rac_17.csv")
+data %>% 
+  filter(type == "Education") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Basically every day` = scales::percent(`Basically every day`,accuracy = 1)) %>% 
+  mutate(`A few times a week` = scales::percent(`A few times a week`,accuracy = 1)) %>%
+  mutate(`A few times a month` = scales::percent(`A few times a month`,accuracy = 1)) %>% 
+  mutate(`Once a month` = scales::percent(`Once a month`,accuracy = 1)) %>% 
+  mutate(`Less than once a month` = scales::percent(`Less than once a month`,accuracy = 1)) %>% 
+  mutate(`Not at all` = scales::percent(`Not at all`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+
+
+#Political News {.tabset}
+Follow political News or Local Issues
+## Overall
+
+```{r}
+data <- read_csv("data/dta_follow_poli_17.csv")
+data %>% 
+  filter(type == "Overall") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Basically every day` = scales::percent(`Basically every day`,accuracy = 1)) %>% 
+  mutate(`A few times a week` = scales::percent(`A few times a week`,accuracy = 1)) %>%
+  mutate(`A few times a month` = scales::percent(`A few times a month`,accuracy = 1)) %>% 
+  mutate(`Once a month` = scales::percent(`Once a month`,accuracy = 1)) %>% 
+  mutate(`Less than once a month` = scales::percent(`Less than once a month`,accuracy = 1)) %>% 
+  mutate(`Not at all` = scales::percent(`Not at all`,accuracy = 1)) %>% 
+  knitr::kable()
+
+```
+
+
+## Race
+```{r}
+data <- read_csv("data/dta_follow_poli_17.csv")
+data %>% 
+  filter(type == "Race") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Basically every day` = scales::percent(`Basically every day`,accuracy = 1)) %>% 
+  mutate(`A few times a week` = scales::percent(`A few times a week`,accuracy = 1)) %>%
+  mutate(`A few times a month` = scales::percent(`A few times a month`,accuracy = 1)) %>% 
+  mutate(`Once a month` = scales::percent(`Once a month`,accuracy = 1)) %>% 
+  mutate(`Less than once a month` = scales::percent(`Less than once a month`,accuracy = 1)) %>% 
+  mutate(`Not at all` = scales::percent(`Not at all`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+
+## Age Groups
+```{r}
+data <- read_csv("data/dta_follow_poli_17.csv")
+data %>% 
+  filter(type == "Age Group") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Basically every day` = scales::percent(`Basically every day`,accuracy = 1)) %>% 
+  mutate(`A few times a week` = scales::percent(`A few times a week`,accuracy = 1)) %>%
+  mutate(`A few times a month` = scales::percent(`A few times a month`,accuracy = 1)) %>% 
+  mutate(`Once a month` = scales::percent(`Once a month`,accuracy = 1)) %>% 
+  mutate(`Less than once a month` = scales::percent(`Less than once a month`,accuracy = 1)) %>% 
+  mutate(`Not at all` = scales::percent(`Not at all`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+## Gender
+
+```{r}
+data <- read_csv("data/dta_follow_poli_17.csv")
+data %>% 
+  filter(type == "Gender") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Basically every day` = scales::percent(`Basically every day`,accuracy = 1)) %>% 
+  mutate(`A few times a week` = scales::percent(`A few times a week`,accuracy = 1)) %>%
+  mutate(`A few times a month` = scales::percent(`A few times a month`,accuracy = 1)) %>% 
+  mutate(`Once a month` = scales::percent(`Once a month`,accuracy = 1)) %>% 
+  mutate(`Less than once a month` = scales::percent(`Less than once a month`,accuracy = 1)) %>% 
+  mutate(`Not at all` = scales::percent(`Not at all`,accuracy = 1)) %>% 
+  knitr::kable()
+
+```
+
+## Educational Attainment
+
+```{r}
+data <- read_csv("data/dta_follow_poli_17.csv")
+data %>% 
+  filter(type == "Education") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Basically every day` = scales::percent(`Basically every day`,accuracy = 1)) %>% 
+  mutate(`A few times a week` = scales::percent(`A few times a week`,accuracy = 1)) %>%
+  mutate(`A few times a month` = scales::percent(`A few times a month`,accuracy = 1)) %>% 
+  mutate(`Once a month` = scales::percent(`Once a month`,accuracy = 1)) %>% 
+  mutate(`Less than once a month` = scales::percent(`Less than once a month`,accuracy = 1)) %>% 
+  mutate(`Not at all` = scales::percent(`Not at all`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+
+
+#Voted Local Election {.tabset}
+
+## Overall
+
+```{r}
+data <- read_csv("data/dta_voted_localE_17.csv")
+data %>% 
+  filter(type == "Overall") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+
+```
+
+
+## Race
+```{r}
+data <- read_csv("data/dta_voted_localE_17.csv")
+data %>% 
+  filter(type == "Race") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+
+## Age Groups
+```{r}
+data <- read_csv("data/dta_voted_localE_17.csv")
+data %>% 
+  filter(type == "Age Group") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+## Gender
+
+```{r}
+data <- read_csv("data/dta_voted_localE_17.csv")
+data %>% 
+  filter(type == "Gender") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>%
+  knitr::kable()
+
+```
+
+## Educational Attainment
+
+```{r}
+data <- read_csv("data/dta_voted_localE_17.csv")
+data %>% 
+  filter(type == "Education") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+
+
+#Attended Public Meeting {.tabset}
+
+## Overall
+
+```{r}
+data <- read_csv("data/dta_attend_meeting_17.csv")
+data %>% 
+  filter(type == "Overall") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+
+```
+
+
+## Race
+```{r}
+data <- read_csv("data/dta_attend_meeting_17.csv")
+data %>% 
+  filter(type == "Race") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+
+## Age Groups
+```{r}
+data <- read_csv("data/dta_attend_meeting_17.csv")
+data %>% 
+  filter(type == "Age Group") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+## Gender
+
+```{r}
+data <- read_csv("data/dta_attend_meeting_17.csv")
+data %>% 
+  filter(type == "Gender") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+
+```
+
+## Educational Attainment
+
+```{r}
+data <- read_csv("data/dta_attend_meeting_17.csv")
+data %>% 
+  filter(type == "Education") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+
+
+#Contact Public Office {.tabset}
+
+## Overall
+
+```{r}
+data <- read_csv("data/dta_contact_office_17.csv")
+data %>% 
+  filter(type == "Overall") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+
+```
+
+
+## Race
+```{r}
+data <- read_csv("data/dta_contact_office_17.csv")
+data %>% 
+  filter(type == "Race") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+
+## Age Groups
+```{r}
+data <- read_csv("data/dta_contact_office_17.csv")
+data %>% 
+  filter(type == "Age Group") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+## Gender
+
+```{r}
+data <- read_csv("data/dta_contact_office_17.csv")
+data %>% 
+  filter(type == "Gender") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+
+```
+
+## Educational Attainment
+
+```{r}
+data <- read_csv("data/dta_contact_office_17.csv")
+data %>% 
+  filter(type == "Education") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+
+
+#Boycotting {.tabset}
+
+## Overall
+
+```{r}
+data <- read_csv("data/dta_boycoott_17.csv")
+data %>% 
+  filter(type == "Overall") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+
+```
+
+
+## Race
+```{r}
+data <- read_csv("data/dta_boycoott_17.csv")
+data %>% 
+  filter(type == "Race") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+
+## Age Groups
+```{r}
+data <- read_csv("data/dta_boycoott_17.csv")
+data %>% 
+  filter(type == "Age Group") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+## Gender
+
+```{r}
+data <- read_csv("data/dta_boycoott_17.csv")
+data %>% 
+  filter(type == "Gender") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+
+```
+
+## Educational Attainment
+
+```{r}
+data <- read_csv("data/dta_boycoott_17.csv")
+data %>% 
+  filter(type == "Education") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+
+
+#Belong to Any Orgs {.tabset}
+
+## Overall
+
+```{r}
+data <- read_csv("data/dta_org_belong_17.csv")
+data %>% 
+  filter(type == "Overall") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+
+```
+
+
+## Race
+```{r}
+data <- read_csv("data/dta_org_belong_17.csv")
+data %>% 
+  filter(type == "Race") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+
+## Age Groups
+```{r}
+data <- read_csv("data/dta_org_belong_17.csv")
+data %>% 
+  filter(type == "Age Group") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+## Gender
+
+```{r}
+data <- read_csv("data/dta_org_belong_17.csv")
+data %>% 
+  filter(type == "Gender") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+
+```
+
+## Educational Attainment
+
+```{r}
+data <- read_csv("data/dta_org_belong_17.csv")
+data %>% 
+  filter(type == "Education") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+
+
+#Volunteered in Any Orgs {.tabset}
+
+## Overall
+
+```{r}
+data <- read_csv("data/dta_v_org_17.csv")
+data %>% 
+  filter(type == "Overall") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+
+```
+
+
+## Race
+```{r}
+data <- read_csv("data/dta_v_org_17.csv")
+data %>% 
+  filter(type == "Race") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+
+## Age Groups
+```{r}
+data <- read_csv("data/dta_v_org_17.csv")
+data %>% 
+  filter(type == "Age Group") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+```
+
+## Gender
+
+```{r}
+data <- read_csv("data/dta_v_org_17.csv")
+data %>% 
+  filter(type == "Gender") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+
+```
+
+## Educational Attainment
+
+```{r}
+data <- read_csv("data/dta_v_org_17.csv")
+data %>% 
+  filter(type == "Education") %>% 
+  select(-type) %>% 
+  rename(Region = region,
+         Group = group) %>% 
+  mutate(`Yes` = scales::percent(`Yes`,accuracy = 1)) %>% 
+  mutate(`No` = scales::percent(`No`,accuracy = 1)) %>% 
+  knitr::kable()
+```
