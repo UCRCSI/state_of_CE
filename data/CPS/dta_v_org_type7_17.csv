@@ -1,55 +1,42 @@
 type,region,group,No,Yes
 Overall,Inland Empire,Overall,0.76,0.24
-Overall,Rest of California,Overall,0.64,0.36
+Overall,Los Angeles County,Overall,0.69,0.31
 Overall,Rest of SoCal,Overall,0.67,0.33
-Overall,SoCal,Overall,0.69,0.31
 Overall,State of CA,Overall,0.67,0.33
-Race,Inland Empire,Black,0.44,0.56
 Race,Inland Empire,White,0.71,0.29
-Race,Inland Empire,Asian,0.82,0.18
 Race,Inland Empire,Hispanic,0.87,0.13
-Race,Rest of California,Black,0.55,0.45
-Race,Rest of California,White,0.58,0.42
-Race,Rest of California,Asian,0.72,0.28
-Race,Rest of California,Hispanic,0.79,0.21
-Race,Rest of SoCal,Black,0.56,0.44
+Race,Los Angeles County,Black,0.5,0.5
+Race,Los Angeles County,White,0.66,0.34
+Race,Los Angeles County,Asian,0.73,0.27
+Race,Los Angeles County,Hispanic,0.75,0.25
+Race,Rest of SoCal,Black,0.5,0.5
 Race,Rest of SoCal,White,0.65,0.35
 Race,Rest of SoCal,Hispanic,0.71,0.29
 Race,Rest of SoCal,Asian,0.72,0.28
-Race,SoCal,Black,0.52,0.48
-Race,SoCal,White,0.66,0.34
-Race,SoCal,Asian,0.74,0.26
-Race,SoCal,Hispanic,0.75,0.25
-Race,State of CA,Black,0.53,0.47
+Race,State of CA,Black,0.5,0.5
 Race,State of CA,White,0.62,0.38
-Race,State of CA,Asian,0.73,0.27
+Race,State of CA,Asian,0.72,0.28
 Race,State of CA,Hispanic,0.76,0.24
 Gender,Inland Empire,Male,0.72,0.28
 Gender,Inland Empire,Female,0.78,0.22
-Gender,Rest of California,Female,0.61,0.39
-Gender,Rest of California,Male,0.69,0.31
+Gender,Los Angeles County,Male,0.65,0.35
+Gender,Los Angeles County,Female,0.72,0.28
 Gender,Rest of SoCal,Male,0.65,0.35
 Gender,Rest of SoCal,Female,0.69,0.31
-Gender,SoCal,Male,0.66,0.34
-Gender,SoCal,Female,0.71,0.29
 Gender,State of CA,Female,0.66,0.34
 Gender,State of CA,Male,0.68,0.32
 Age Group,Inland Empire,65+,0.64,0.36
 Age Group,Inland Empire,50-64,0.69,0.31
 Age Group,Inland Empire,35-49,0.83,0.17
 Age Group,Inland Empire,18-34,0.84,0.16
-Age Group,Rest of California,65+,0.5,0.5
-Age Group,Rest of California,50-64,0.66,0.34
-Age Group,Rest of California,35-49,0.69,0.31
-Age Group,Rest of California,18-34,0.7,0.3
+Age Group,Los Angeles County,65+,0.62,0.38
+Age Group,Los Angeles County,50-64,0.68,0.32
+Age Group,Los Angeles County,35-49,0.71,0.29
+Age Group,Los Angeles County,18-34,0.74,0.26
 Age Group,Rest of SoCal,65+,0.6,0.4
 Age Group,Rest of SoCal,50-64,0.66,0.34
 Age Group,Rest of SoCal,18-34,0.7,0.3
 Age Group,Rest of SoCal,35-49,0.71,0.29
-Age Group,SoCal,65+,0.6,0.4
-Age Group,SoCal,50-64,0.67,0.33
-Age Group,SoCal,18-34,0.73,0.27
-Age Group,SoCal,35-49,0.74,0.26
 Age Group,State of CA,65+,0.55,0.45
 Age Group,State of CA,50-64,0.66,0.34
 Age Group,State of CA,18-34,0.72,0.28
@@ -57,15 +44,12 @@ Age Group,State of CA,35-49,0.72,0.28
 Education,Inland Empire,4-Year College or Higher,0.74,0.26
 Education,Inland Empire,HS or Less,0.76,0.24
 Education,Inland Empire,Some College or AA,0.77,0.23
-Education,Rest of California,4-Year College or Higher,0.57,0.43
-Education,Rest of California,Some College or AA,0.66,0.34
-Education,Rest of California,HS or Less,0.87,0.13
+Education,Los Angeles County,Some College or AA,0.58,0.42
+Education,Los Angeles County,4-Year College or Higher,0.66,0.34
+Education,Los Angeles County,HS or Less,0.88,0.12
 Education,Rest of SoCal,Some College or AA,0.61,0.39
 Education,Rest of SoCal,4-Year College or Higher,0.65,0.35
 Education,Rest of SoCal,HS or Less,0.83,0.17
-Education,SoCal,4-Year College or Higher,0.66,0.34
-Education,SoCal,Some College or AA,0.66,0.34
-Education,SoCal,HS or Less,0.81,0.19
 Education,State of CA,4-Year College or Higher,0.62,0.38
 Education,State of CA,Some College or AA,0.66,0.34
 Education,State of CA,HS or Less,0.83,0.17
