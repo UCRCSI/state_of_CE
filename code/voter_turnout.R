@@ -1,22 +1,22 @@
 source("code/voter_analysis.R")
-# table(is.na(mail_raw$SRPREC_KEY)==T)
+# table(is.na(abs_raw$SRPREC_KEY)==T)
 
 # load data 2018 ---------------------------------------------------------------
-reg_raw <- read_excel("data/voter/2018/state_g18_registration_by_g18_srprec.xlsx", col_types = "text")
-vote_raw <- read_excel("data/voter/2018/state_g18_voters_by_g18_srprec.xlsx", col_types = "text")
-mail_raw <- read_excel("data/voter/2018/state_g18_mailballot_by_g18_srprec.xlsx", col_types = "text")
-sr_blk <- read_excel("data/voter/2018/state_g18_sr_blk_map.xlsx", col_types = "text")
+reg_raw <- read_excel("~/Dropbox/CSI State of CE Report share/Data/statewide/2018/state_g18_registration_by_g18_srprec.xlsx", col_types = "text")
+vote_raw <- read_excel("~/Dropbox/CSI State of CE Report share/Data/statewide/2018/state_g18_voters_by_g18_srprec.xlsx", col_types = "text")
+abs_raw <- read_excel("~/Dropbox/CSI State of CE Report share/Data/statewide/2018/state_g18_absentees_by_g18_srprec.xlsx", col_types = "text")
+sr_blk <- read_excel("~/Dropbox/CSI State of CE Report share/Data/statewide/2018/state_g18_sr_blk_map.xlsx", col_types = "text")
 # clean data 2018--------------------------------------------------------------
-final_18 <- vote_clean (reg_raw, vote_raw, mail_raw, sr_blk)
+final_18 <- vote_clean (reg_raw, vote_raw, abs_raw, sr_blk)
 write_csv(final_18, "export/final_18.csv", na = "")
 
 
 
 # load data 2014 ---------------------------------------------------------------
-reg_raw <- read_excel("data/voter/2014/state_g14_registration_by_g14_srprec.xlsx", col_types = "text")
-vote_raw <- read_excel("data/voter/2014/state_g14_voters_by_g14_srprec.xlsx", col_types = "text")
-mail_raw <- read_excel("data/voter/2014/state_g14_mailballot_by_g14_srprec.xlsx", col_types = "text")
-sr_blk <- read_excel("data/voter/2014/state_g14_sr_blk_map.xlsx", col_types = "text")
+reg_raw <- read_excel("~/Dropbox/CSI State of CE Report share/Data/statewide/2014/state_g14_registration_by_g14_srprec.xlsx", col_types = "text")
+vote_raw <- read_excel("~/Dropbox/CSI State of CE Report share/Data/statewide/2014/state_g14_voters_by_g14_srprec.xlsx", col_types = "text")
+abs_raw <- read_excel("~/Dropbox/CSI State of CE Report share/Data/statewide/2014/state_g14_absentees_by_g14_srprec.xlsx", col_types = "text")
+sr_blk <- read_excel("~/Dropbox/CSI State of CE Report share/Data/statewide/2014/state_g14_sr_blk_map.xlsx", col_types = "text")
 sr_blk <- sr_blk %>% 
   rename(FIPS = fips,
          SRPREC_KEY = srprec_key, 
@@ -25,7 +25,7 @@ sr_blk <- sr_blk %>%
          BLOCK = block, 
          PCTSRPREC = pctsrprec)
 # clean data 2014--------------------------------------------------------------
-final_14 <- vote_clean (reg_raw, vote_raw, mail_raw, sr_blk)
+final_14 <- vote_clean (reg_raw, vote_raw, abs_raw, sr_blk)
 write_csv(final_14, "export/final_14.csv", na = "")
 # generate 2018 - 2014 compare --------------------------------------------
 final_18 <- read_csv("export/final_18.csv")
@@ -64,8 +64,8 @@ final_1418 <- final_14 %>%
            TRUE ~mail)) %>% 
   mutate(TRACT = as.numeric(TRACT),
          FIPS = as.numeric(FIPS),
-         TRACT = formatC(TRACT, width = "6", format = "d", flag = "0"),
-         FIPS = formatC(FIPS, width = "5", format = "d", flag = "0"),
+         TRACT = formatC(TRACT, width = 6, format = "d", flag = "0"),
+         FIPS = formatC(FIPS, width = 5, format = "d", flag = "0"),
          GEOID = paste(FIPS, TRACT, sep = "")) %>% 
   select(GEOID, mail, youth, adult, latinx)
   
@@ -74,21 +74,21 @@ write_csv(final_1418, "export/final_1418.csv", na = "")
 
 
 # load data 2016 ---------------------------------------------------------------
-reg_raw <- read_excel("data/voter/2016/state_g16_registration_by_g16_srprec.xlsx", col_types = "text")
-vote_raw <- read_excel("data/voter/2016/state_g16_voters_by_g16_srprec.xlsx", col_types = "text")
-mail_raw <- read_excel("data/voter/2016/state_g16_mailballot_by_g16_srprec.xlsx", col_types = "text")
-sr_blk <- read_excel("data/voter/2016/state_g16_sr_blk_map.xlsx", col_types = "text")
+reg_raw <- read_excel("~/Dropbox/CSI State of CE Report share/Data/statewide/2016/state_g16_registration_by_g16_srprec.xlsx", col_types = "text")
+vote_raw <- read_excel("~/Dropbox/CSI State of CE Report share/Data/statewide/2016/state_g16_voters_by_g16_srprec.xlsx", col_types = "text")
+abs_raw <- read_excel("~/Dropbox/CSI State of CE Report share/Data/statewide/2016/state_g16_absentees_by_g16_srprec.xlsx", col_types = "text")
+sr_blk <- read_excel("~/Dropbox/CSI State of CE Report share/Data/statewide/2016/state_g16_sr_blk_map.xlsx", col_types = "text")
 # clean data 2016--------------------------------------------------------------
-final_16 <- vote_clean (reg_raw, vote_raw, mail_raw, sr_blk)
+final_16 <- vote_clean (reg_raw, vote_raw, abs_raw, sr_blk)
 write_csv(final_16, "export/final_16.csv", na = "")
 
 # load data 2012 ---------------------------------------------------------------
-reg_raw <- read_excel("data/voter/2012/state_p12_registration_by_p12_srprec.xlsx", col_types = "text")
-vote_raw <- read_excel("data/voter/2012/state_p12_voters_by_p12_srprec.xlsx", col_types = "text")
-mail_raw <- read_excel("data/voter/2012/state_p12_mailballot_by_p12_srprec.xlsx", col_types = "text")
-sr_blk <- read_excel("data/voter/2012/state_p12_sr_blk_map.xlsx", col_types = "text")
+reg_raw <- read_excel("~/Dropbox/CSI State of CE Report share/Data/statewide/2012/state_g12_registration_by_g12_srprec.xlsx", col_types = "text")
+vote_raw <- read_excel("~/Dropbox/CSI State of CE Report share/Data/statewide/2012/state_g12_voters_by_g12_srprec.xlsx", col_types = "text")
+abs_raw <- read_excel("~/Dropbox/CSI State of CE Report share/Data/statewide/2012/state_g12_absentees_by_g12_srprec.xlsx", col_types = "text")
+sr_blk <- read_excel("~/Dropbox/CSI State of CE Report share/Data/statewide/2012/state_g12_sr_blk_map.xlsx", col_types = "text")
 # clean data 2012--------------------------------------------------------------
-final_12 <- vote_clean (reg_raw, vote_raw, mail_raw, sr_blk)
+final_12 <- vote_clean (reg_raw, vote_raw, abs_raw, sr_blk)
 write_csv(final_12, "export/final_12.csv", na = "")
 
 # generate 2012-2016 compare --------------------------------------------
@@ -128,8 +128,8 @@ final_1216 <- final_12 %>%
            TRUE ~mail)) %>% 
   mutate(TRACT = as.numeric(TRACT),
          FIPS = as.numeric(FIPS),
-         TRACT = formatC(TRACT, width = "6", format = "d", flag = "0"),
-         FIPS = formatC(FIPS, width = "5", format = "d", flag = "0"),
+         TRACT = formatC(TRACT, width = 6, format = "d", flag = "0"),
+         FIPS = formatC(FIPS, width = 5, format = "d", flag = "0"),
          GEOID = paste(FIPS, TRACT, sep = "")) %>% 
   select(GEOID, mail, youth, adult, latinx)
 
@@ -141,15 +141,16 @@ library(sp)
 library(rgdal)
 ie_shapes <- tracts(state="CA", county = c("Riverside County", "San Bernardino County"), year = 2017)
 
-final_1418 <- read_csv("export/final_1418.csv")
-final_1418 <- final_1418 %>% 
-  mutate(GEOID = as.character(GEOID),
-         GEOID = paste("0", GEOID, sep = ""))
+# final_1418 <- read_csv("export/final_1418.csv")
+# final_1418 <- final_1418 %>% 
+#   mutate(GEOID = as.character(GEOID),
+#          GEOID = paste("0", GEOID, sep = ""))
+# 
+# final_1216 <- read_csv("export/final_1216.csv")
+# final_1216 <- final_1216 %>% 
+#   mutate(GEOID = as.character(GEOID),
+#          GEOID = paste("0", GEOID, sep = ""))
 
-final_1216 <- read_csv("export/final_1216.csv")
-final_1216 <- final_1216 %>% 
-  mutate(GEOID = as.character(GEOID),
-         GEOID = paste("0", GEOID, sep = ""))
 map_1418 <- geo_join(ie_shapes, final_1418, "GEOID", "GEOID")    
 map_1216 <- geo_join(ie_shapes, final_1216, "GEOID", "GEOID")   
 
